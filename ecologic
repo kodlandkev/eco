@@ -1,0 +1,96 @@
+import discord
+from discord.ext import commands
+
+description='''Este programa le enseña a los niños a cuidar el medio ambiente. El programa te propone todo lo anterior mediante juguetes que son reciclados y se ejecuta con $toy pero si no puedes hacer eso también está la opción $game que te da juegos para aprender la clasificación de basura pero si no te gusta eso también está la opción $cuent que te da a escoger varios cuentos. Todos los comandos anteriores deben de tener un número adelante del 1 al 3 para descubrir todas las posibilidades por ejemplo $toy1.'''
+intents=discord.Intents.default()
+intents.members=True
+intents.message_content=True
+
+bot=commands.Bot(command_prefix='$', description=description, intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'logeado como {bot.user} (ID: {bot.user.id}) ')
+
+@bot.command()
+async def cuent1(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagescuent\cuent1.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def cuent2(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagescuent\cuent2.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def cuent3(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagescuent\cuent3.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def game1(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagesgames\juego1.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def game2(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagesgames\juego2.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def game3(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagesgames\juego3.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def toy1(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagestoys\juget1.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def toy2(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagestoys\juget2.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def toy3(ctx):
+    if ctx.message.author == bot.user:
+        return
+    
+    with open('imagestoys\juget3.jpg', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+bot.run("token")
