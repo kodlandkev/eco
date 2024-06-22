@@ -1,19 +1,36 @@
 import discord
+import os
+import random
 from discord.ext import commands
 
-description='''Este programa le enseña a los niños a cuidar el medio ambiente. El programa te propone todo lo anterior mediante juguetes que son reciclados y se ejecuta con $toy pero si no puedes hacer eso también está la opción $game que te da juegos para aprender la clasificación de basura pero si no te gusta eso también está la opción $cuent que te da a escoger varios cuentos. Todos los comandos anteriores deben de tener un número adelante del 1 al 3 para descubrir todas las posibilidades por ejemplo $toy1.'''
+description='''Este programa que enseña a los niños a cuidar el medio ambiente. El programa te propone todo lo anterior mediante juguetes que son reciclados y se ejecuta con $toy pero si no puedes hacer eso también está la opción $game que te da juegos para aprender la clasificación de basura pero si no te gusta eso también está la opción $cuent que te da a escoger varios cuentos.'''
 intents=discord.Intents.default()
 intents.members=True
 intents.message_content=True
 
 bot=commands.Bot(command_prefix='$', description=description, intents=intents)
+img_name = os.listdir('happy')
 
 @bot.event
 async def on_ready():
     print(f'logeado como {bot.user} (ID: {bot.user.id}) ')
 
 @bot.command()
-async def cuent1(ctx):
+async def descripcion(ctx):
+    await ctx.send('Hola amigo soy un programa que le enseña a los niños a cuidar el medio ambiente. El programa te propone todo lo anterior mediante juguetes que son reciclados y se ejecuta con $toy pero si no puedes hacer eso también está la opción $game que te da juegos pero si no te gusta eso también está la opción $cuent que te da a escoger varios cuentos que podemos leer.')
+    img_to_send = random.choice(img_name)
+    with open(f'happy/{img_to_send}', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+@bot.command()
+async def cuent(ctx):
+    await ctx.send('Te propongo tres cuentos que podemos leer juntos amigo. El bosque magico que lo podemos leer si escribes $bosquemag pero si no te interesa tambien tengo otro y es Cambio de estaciones y lo leeremos si escribes $camdesta pero si no te gusta te propongo otro cuento que espero te encante amigo mio que es El bosque natural y lo leemos si escbribes $bosnat')
+    img_to_send = random.choice(img_name)
+    with open(f'happy/{img_to_send}', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+@bot.command()
+async def bosquemag(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -22,7 +39,7 @@ async def cuent1(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def cuent2(ctx):
+async def camdesta(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -31,7 +48,7 @@ async def cuent2(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def cuent3(ctx):
+async def bosnat(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -40,7 +57,14 @@ async def cuent3(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def game1(ctx):
+async def game(ctx):
+    await ctx.send('Entonces jugaremos estos juegos. Hora de encestar te llama la atencion? bueno si es asi escribe $horence pero si no te gusto este jugo te propongo otro que podemos jugar y es el Mejor reciclador si es que te gusta solo escribe $mejorec pero si to te gusta no te preocupes puedes jugar otro y es Bingo del reciclaje y si quieres jugar solo escribe $bingrec')
+    img_to_send = random.choice(img_name)
+    with open(f'happy/{img_to_send}', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+@bot.command()
+async def horence(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -49,7 +73,7 @@ async def game1(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def game2(ctx):
+async def mejorec(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -58,7 +82,7 @@ async def game2(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def game3(ctx):
+async def bingrec(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -67,7 +91,14 @@ async def game3(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def toy1(ctx):
+async def toy(ctx):
+    await ctx.send('Entonces crearas tus juguetes muy bien entonces te propongo lo siguiente una serpiente que se mueve para decirte como darle vida escribe $serp pero si no te interesa te tengo otro juguete y es un trompo se ve que es interesante no? pues si quieres saber como crearlo solo escribe $tromp pero si no es de tu agrado tambien tengo un spiner y para saber como hacerlo solo escribe $spi')
+    img_to_send = random.choice(img_name)
+    with open(f'happy/{img_to_send}', 'rb') as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+@bot.command()
+async def serp(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -76,7 +107,7 @@ async def toy1(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def toy2(ctx):
+async def tromp(ctx):
     if ctx.message.author == bot.user:
         return
     
@@ -85,7 +116,7 @@ async def toy2(ctx):
         await ctx.send(file=picture)
 
 @bot.command()
-async def toy3(ctx):
+async def spi(ctx):
     if ctx.message.author == bot.user:
         return
     
